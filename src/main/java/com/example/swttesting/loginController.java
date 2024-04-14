@@ -34,22 +34,21 @@ public class loginController {
     }
 
     public void switchToNextPage(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("productCatalogue.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (handleLogin()) {
+            Parent root = FXMLLoader.load(getClass().getResource("productCatalogue.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("i am here");
+        }
     }
 
     @FXML
-    private void handleLogin() throws IOException {
+    private boolean handleLogin() throws IOException {
         String Email = usernameField.getText();
         String Password = passwordField.getText();
 
-        if (Email.equals("admin") && Password.equals("admin")) {
-            switchToNextPage(new ActionEvent());
-        } else {
-            System.out.println("Invalid credentials!");
-        }
+        return Ecommerce.checkuser(Email, Password);
     }
 }

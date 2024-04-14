@@ -20,7 +20,7 @@
         <TextField fx:id="usernameField" promptText="Enter your username" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <PasswordField fx:id="passwordField" promptText="Enter your password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Button fx:id="loginButton" onAction="#handleLogin" prefHeight="26.0" prefWidth="57.0" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Button fx:id="loginButton" onAction="#switchToNextPage" prefHeight="26.0" prefWidth="57.0" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Button fx:id="registerButton" mnemonicParsing="false" onAction="#switchToRegister" text="Sign Up" GridPane.columnIndex="1" GridPane.rowIndex="4" />
         <columnConstraints>
             <ColumnConstraints />
