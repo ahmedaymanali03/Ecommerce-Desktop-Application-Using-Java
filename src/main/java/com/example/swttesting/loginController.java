@@ -26,7 +26,7 @@ public class loginController {
     private Parent root;
 
     public void switchToRegister(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("register.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("signUp.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
