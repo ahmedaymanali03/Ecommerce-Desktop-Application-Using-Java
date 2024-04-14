@@ -1,4 +1,4 @@
-package com.gui;
+package com.example.swttesting;
 
 public class orderController {
 }

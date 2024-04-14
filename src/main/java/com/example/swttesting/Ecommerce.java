@@ -3,14 +3,15 @@ package com.example.swttesting;
 import java.util.ArrayList;
 
 public class Ecommerce {
-    private ArrayList<User> users = new ArrayList<User>();
-    private ArrayList<Product> products = new ArrayList<Product>();
+    public static ArrayList<User> users = new ArrayList<User>();
+    public static ArrayList<Product> products = new ArrayList<Product>();
+    public static User currentUser;
 
-    public void registerUser(String name, String email, String password) {
+    public static void registerUser(String name, String email, String password) {
         users.add(new User(name, email, password));
     }
 
-    public void addProduct(String name, double price, int quantity) {
+    public static void addProduct(String name, double price, int quantity) {
         products.add(new Product(name, price, quantity));
     }
 
@@ -48,6 +49,17 @@ public class Ecommerce {
        registerUser("Aya Samir", "aya.samir@email.com", "ayaPass2024");
        registerUser("Omar Abdelrahman", "omar.abdelrahman@email.com", "omarSecure!");
        registerUser("Sara Ahmed", "sara.ahmed@email.com", "saraPassword");
+    }
+    public static boolean checkuser(String email,String password){
+        for (int i = 0; i< users.size(); i++){
+            if (users.get(i).getEmail().equals(email) && users.get(i).getPassword().equals(password)){
+                //System.out.println("The user was found");
+                return true;
+            }
+
+        }
+       // System.out.println("The user is not found");
+        return false;
     }
 
 }

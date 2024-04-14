@@ -11,4 +11,13 @@ public class HelloController {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
+
+    public static class shoppingCartController {
+    }
+
+    public static class productCatalogueController {
+    }
+
+    public static class signUpController {
+    }
 }
