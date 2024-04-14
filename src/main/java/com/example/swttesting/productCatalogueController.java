@@ -46,16 +46,19 @@ public class productCatalogueController {
             cartCounter++;
             cartButton.setText(cartCounter + " items in cart");
             Ecommerce.currentUser.getShoppingCart().addProduct(products.get(listView.getSelectionModel().getSelectedIndex()), 1);
+            //products.get(listView.getSelectionModel().getSelectedIndex()).setQuantity(products.get(listView.getSelectionModel().getSelectedIndex()).getQuantity() - 1);
             System.out.println(Ecommerce.currentUser.getShoppingCart().getTotal());
+
+            listView.getItems().clear();
+            for(int i = 0; i < products.size(); i++){
+
+                listView.getItems().add(products.get(i).getName() + " - " + products.get(i).getPrice() + " - " + products.get(i).getQuantity());
+            }
 
 
         });
 
-        listView.getItems().clear();
-        for(int i = 0; i < products.size(); i++){
 
-            listView.getItems().add(products.get(i).getName() + " - " + products.get(i).getPrice() + " - " + products.get(i).getQuantity());
-        }
 
 
 
