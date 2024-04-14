@@ -17,6 +17,7 @@ public class Ecommerce {
 
    public Ecommerce(){
 
+
         addProduct("Laptop", 1000, 10);
         addProduct("Mouse", 20, 100);
         addProduct("Keyboard", 50, 50);
@@ -49,6 +50,7 @@ public class Ecommerce {
        registerUser("Aya Samir", "aya.samir@email.com", "ayaPass2024");
        registerUser("Omar Abdelrahman", "omar.abdelrahman@email.com", "omarSecure!");
        registerUser("Sara Ahmed", "sara.ahmed@email.com", "saraPassword");
+       currentUser = users.get(0);
     }
     public static boolean checkuser(String email,String password){
         for (int i = 0; i< users.size(); i++){
