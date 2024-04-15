@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 
 
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 
 import java.io.IOException;
@@ -26,9 +27,16 @@ public class shoppingCartController {
     @FXML
     private Button checkoutButton;
 
-    // write code for the price label.
     @FXML
-    private Label priceLabel;
+    public Label priceLabel;
+
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+
+
 
 
 
@@ -39,7 +47,16 @@ public class shoppingCartController {
         for(int i = 0; i < Ecommerce.currentUser.getShoppingCart().getProducts().size(); i++){
             cartListView.getItems().add(Ecommerce.currentUser.getShoppingCart().getProducts().get(i).getName());
         }
+
         priceLabel.setText("Total: " + Ecommerce.currentUser.getShoppingCart().getTotal());
+    }
+
+    public void checkout(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("checkout.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
 }
