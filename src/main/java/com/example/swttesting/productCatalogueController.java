@@ -34,7 +34,6 @@ public class productCatalogueController {
     private int cartCounter = 0;
     public void initialize() {
 
-        ObservableList<Product> observableList = FXCollections.observableArrayList(products);
 
         for(int i = 0; i < products.size(); i++){
             listView.getItems().add(products.get(i).getName() + " - " + products.get(i).getPrice() + " - " + products.get(i).getQuantity());
