@@ -100,7 +100,14 @@ public class ShoppingCart {
         products.clear();
     }
 
-
+//function that gets no of products in the shopping cart
+    public int getNoOfProducts(){
+        int noOfProducts = 0;
+        for (Product product : products.keySet()) {
+            noOfProducts += products.get(product);
+        }
+        return noOfProducts;
+    }
 
 
 }
