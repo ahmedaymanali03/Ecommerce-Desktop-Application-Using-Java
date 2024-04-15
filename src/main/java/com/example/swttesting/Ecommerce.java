@@ -54,6 +54,7 @@ public class Ecommerce {
         for (int i = 0; i< users.size(); i++){
             if (users.get(i).getEmail().equals(email) && users.get(i).getPassword().equals(password)){
                 //System.out.println("The user was found");
+                currentUser = users.get(i);
                 return true;
             }
 
