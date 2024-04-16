@@ -71,7 +71,7 @@ public class shoppingCartController {
     }
 
     public void checkout(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("checkout.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("order.fxml"));
         Scene scene = new Scene(root);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);

@@ -61,34 +61,41 @@ public class orderController {
 
     public boolean verifyCard() {
         if (!isInteger(cardNo.getText()) || cardNo.getText().length() != 16) {
+            System.out.println(1);
             return false;
+
         }
         if (!cardNo.getText().startsWith("1234")) {
+            System.out.println(2);
             return false;
         }
 
         if(!isInteger(cvv.getText()) || cvv.getText().length() != 3){
+            System.out.println(3);
             return false;
         }
         if(!isInteger(month.getText())){
+            System.out.println(4);
             return false;
         }
 
         if (!isInteger(year.getText()))
         {
+            System.out.println(5);
             return false;
         }
 
         if(!isBeforeOrEqualCurrentYearAndMonth(Integer.parseInt(month.getText()), Integer.parseInt(year.getText()))){
+            System.out.println(6);
             return false;
         }
-
+        System.out.println(7);
         return true;
     }
 
     public boolean isInteger(String input) {
         try {
-            Integer.parseInt(input);
+            Integer.valueOf(input);
             return true;
         } catch (NumberFormatException e) {
             return false;
