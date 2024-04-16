@@ -41,9 +41,12 @@ public class ShoppingCart {
             if(products.get(product) == quantity) {
                 products.remove(product);
                 product.setQuantity(product.getQuantity() + quantity);
+                System.out.println(product.getQuantity() + " " + quantity);
             } else {
             products.put(product, products.get(product) - quantity);
-            product.setQuantity(product.getQuantity() + quantity);}
+            product.setQuantity(product.getQuantity() + quantity);
+            System.out.println(product.getQuantity() + " " + quantity);
+            }
         } else {
             throw new IllegalArgumentException("Product not found in cart");
         }
@@ -110,4 +113,7 @@ public class ShoppingCart {
     }
 
 
+    public int getNoOfProducts(Product product){
+        return products.get(product);
+    }
 }

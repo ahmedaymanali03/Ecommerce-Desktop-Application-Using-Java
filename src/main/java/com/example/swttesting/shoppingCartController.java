@@ -22,7 +22,7 @@ import static com.example.swttesting.Ecommerce.products;
 public class shoppingCartController {
 
     @FXML
-    private ListView<String> cartListView;
+    private ListView<String> listView;
 
     @FXML
     private Button checkoutButton;
@@ -44,12 +44,29 @@ public class shoppingCartController {
 
 
     public void initialize() {
+        int cartCounter = Ecommerce.currentUser.getShoppingCart().getNoOfProducts();
+
         //ObservableList<Product> observableList = FXCollections.observableArrayList(Ecommerce.currentUser.getShoppingCart().getProducts());
         System.out.println(Ecommerce.currentUser.getShoppingCart().getProducts());
         for(int i = 0; i < Ecommerce.currentUser.getShoppingCart().getProducts().size(); i++){
-            cartListView.getItems().add(Ecommerce.currentUser.getShoppingCart().getProducts().get(i).getName());
+           listView.getItems().add(Ecommerce.currentUser.getShoppingCart().getProducts().get(i).getName()+ " - " + Ecommerce.currentUser.getShoppingCart().getProducts().get(i).getPrice() + " - " + Ecommerce.currentUser.getShoppingCart().getNoOfProducts(Ecommerce.currentUser.getShoppingCart().getProducts().get(i)));
         }
+        listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected Item: " + newValue);
 
+            Ecommerce.currentUser.getShoppingCart().removeProduct(Ecommerce.currentUser.getShoppingCart().getProducts().get(listView.getSelectionModel().getSelectedIndex()), 1);
+            //Ecommerce.currentUser.getShoppingCart().getProducts().get(listView.getSelectionModel().getSelectedIndex()).setQuantity(products.get(listView.getSelectionModel().getSelectedIndex()).getQuantity() + 1);
+            System.out.println(Ecommerce.currentUser.getShoppingCart().getTotal());
+            priceLabel.setText("Total: " + Ecommerce.currentUser.getShoppingCart().getTotal());
+
+            listView.getItems().clear();
+            for(int i = 0; i < products.size(); i++){
+
+                listView.getItems().add(Ecommerce.currentUser.getShoppingCart().getProducts().get(i).getName()+ " - " + Ecommerce.currentUser.getShoppingCart().getProducts().get(i).getPrice() + " - " + Ecommerce.currentUser.getShoppingCart().getNoOfProducts(Ecommerce.currentUser.getShoppingCart().getProducts().get(i)));
+
+          //  priceLabel.setText("Total: " + Ecommerce.currentUser.getShoppingCart().getTotal());
+                }
+        });
         priceLabel.setText("Total: " + Ecommerce.currentUser.getShoppingCart().getTotal());
     }
 
