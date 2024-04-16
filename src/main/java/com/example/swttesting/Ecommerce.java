@@ -5,10 +5,31 @@ import java.util.ArrayList;
 public class Ecommerce {
     public static ArrayList<User> users = new ArrayList<User>();
     public static ArrayList<Product> products = new ArrayList<Product>();
+
     public static User currentUser;
 
-    public static void registerUser(String name, String email, String password) {
-        users.add(new User(name, email, password));
+    public static boolean registerUser(String name, String email, String password) {
+        if (isUserExist(email)) {
+            System.out.println("The user already exists");
+            return false;
+        }
+        User newUser = new User(name, email, password);
+        users.add(newUser);
+        currentUser = newUser;
+        System.out.println("User " + name + " has been registered successfully");
+        return true;
+    }
+
+
+    public static boolean isUserExist(String email) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getEmail().equals(email)) {
+                //System.out.println("The user was found");
+                return true;
+            }
+
+        }
+        return false;
     }
 
     public static void addProduct(String name, double price, int quantity) {
@@ -52,13 +73,13 @@ public class Ecommerce {
     }
     public static boolean checkuser(String email,String password){
         for (int i = 0; i< users.size(); i++){
-            if (users.get(i).getEmail().equals(email) && users.get(i).getPassword().equals(password)){
+            if (users.get(i).getEmail().equals(email) && users.get(i).getPassword().equals(password)) {
                 //System.out.println("The user was found");
                 currentUser = users.get(i);
                 return true;
             }
-
         }
+
        // System.out.println("The user is not found");
         return false;
     }

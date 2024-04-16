@@ -28,11 +28,28 @@ public class SignUpController
 
     public void switchToProductCatalogue(ActionEvent event) throws IOException
     {
-        Ecommerce.registerUser(usernameField.getText(), emailField.getText(), passwordField.getText());
+        boolean registered;
+        registered = Ecommerce.registerUser(usernameField.getText(), emailField.getText(), passwordField.getText());
+        if (!registered)
+        {
+            return;
+        }
         Parent root = FXMLLoader.load(getClass().getResource("productCatalogue.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        System.out.println("User " + Ecommerce.currentUser.getName()+ " has been registered successfully");
     }
+
+    public void switchToLogin(ActionEvent event) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 }
