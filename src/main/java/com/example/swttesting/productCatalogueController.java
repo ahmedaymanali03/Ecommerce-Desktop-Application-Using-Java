@@ -41,7 +41,7 @@ public class productCatalogueController {
         for(int i = 0; i < products.size(); i++){
             listView.getItems().add(products.get(i).getName() + " - " + products.get(i).getPrice() + " - " + products.get(i).getQuantity());
         }
-        Ecommerce.currentUser.addOrder(new Orders("1", "1", "1", 1, Ecommerce.currentUser.getShoppingCart()));
+//        Ecommerce.currentUser.addOrder(new Orders("1", "1", "1", 1, Ecommerce.currentUser.getShoppingCart()));
 
         listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println("Selected Item: " + newValue);

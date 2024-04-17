@@ -10,22 +10,22 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swttesting.orderController">
    <children>
-      <Button layoutX="485.0" layoutY="336.0" mnemonicParsing="false" onAction="#switchToProductCat" text="Return to cart" />
-      <Button layoutX="27.0" layoutY="336.0" mnemonicParsing="false" text="complete order" />
+      <Button layoutX="485.0" layoutY="336.0" mnemonicParsing="false" onAction="#switchToCart" text="Return to cart" />
+      <Button layoutX="27.0" layoutY="336.0" mnemonicParsing="false" onAction="#completeOrder" text="complete order" />
       <Text layoutX="247.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkout" wrappingWidth="104.29254150390625">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <TextField layoutX="272.0" layoutY="143.0" />
-      <TextField layoutX="273.0" layoutY="202.0" prefHeight="26.0" prefWidth="55.0" />
-      <TextField layoutX="274.0" layoutY="261.0" prefHeight="26.0" prefWidth="55.0" />
-      <TextField layoutX="370.0" layoutY="261.0" prefHeight="26.0" prefWidth="55.0" />
+      <TextField fx:id="cardNo" layoutX="272.0" layoutY="143.0" />
+      <TextField fx:id="cvv" layoutX="273.0" layoutY="202.0" prefHeight="26.0" prefWidth="55.0" />
+      <TextField fx:id="month" layoutX="274.0" layoutY="261.0" prefHeight="26.0" prefWidth="55.0" />
+      <TextField fx:id="year" layoutX="370.0" layoutY="261.0" prefHeight="26.0" prefWidth="55.0" />
       <Text layoutX="172.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number" />
       <Text layoutX="197.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVV" />
       <Text layoutX="173.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="month / Year" />
       <Text layoutX="344.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" />
       <Text layoutX="178.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Total" />
-      <Label layoutX="347.0" layoutY="88.0" text="0" />
+      <Label fx:id="total" layoutX="347.0" layoutY="88.0" text="0" />
    </children>
 </AnchorPane>

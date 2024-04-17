@@ -9,8 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import java.io.IOException;
 
@@ -20,6 +21,8 @@ public class orderController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @FXML
     private TextField cardNo;
@@ -36,6 +39,11 @@ public class orderController {
     @FXML
     private Label total;
 
+    public void initialize()
+    {
+        total.setText("Total: " + Ecommerce.currentUser.getShoppingCart().getTotal());
+    }
+
 
     public void switchToCart(ActionEvent event) throws IOException
     {
@@ -50,6 +58,18 @@ public class orderController {
     public void completeOrder(ActionEvent event) throws IOException
     {
         if(verifyCard()) {
+
+            Orders newOrder = new Orders(getCurrentDateTimeAsString(), "confirmed", Ecommerce.currentUser.getShoppingCart().getTotal(), Ecommerce.currentUser.getShoppingCart());
+            Ecommerce.currentUser.addOrder(newOrder);
+            System.out.println("Order completed successfully");
+            for (int i = 0; i < Ecommerce.currentUser.getOrders().size(); i++) {
+                System.out.println("Order ID: " + Ecommerce.currentUser.getOrders().get(i).getOrderID());
+                System.out.println("Order Date: " + Ecommerce.currentUser.getOrders().get(i).getOrderDate());
+                System.out.println("Order Status: " + Ecommerce.currentUser.getOrders().get(i).getOrderStatus());
+                System.out.println("Order Total: " + Ecommerce.currentUser.getOrders().get(i).getOrderTotal());
+                System.out.println("Shopping Cart: " + Ecommerce.currentUser.getOrders().get(i).getShoppingCart());
+            }
+            Ecommerce.currentUser.getShoppingCart().clear();
             Parent root = FXMLLoader.load(getClass().getResource("productCatalogue.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -60,7 +80,7 @@ public class orderController {
 
 
     public boolean verifyCard() {
-        if (!isInteger(cardNo.getText()) || cardNo.getText().length() != 16) {
+        if (!isLong(cardNo.getText()) || cardNo.getText().length() != 16) {
             System.out.println(1);
             return false;
 
@@ -85,7 +105,7 @@ public class orderController {
             return false;
         }
 
-        if(!isBeforeOrEqualCurrentYearAndMonth(Integer.parseInt(month.getText()), Integer.parseInt(year.getText()))){
+        if(isBeforeOrEqualCurrentYearAndMonth(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()))){
             System.out.println(6);
             return false;
         }
@@ -93,9 +113,18 @@ public class orderController {
         return true;
     }
 
+    public boolean isLong(String input) {
+        try {
+            Long.parseLong(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public boolean isInteger(String input) {
         try {
-            Integer.valueOf(input);
+            Integer.parseInt(input);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -109,4 +138,15 @@ public class orderController {
         return givenYearMonth.isBefore(currentYearMonth) || givenYearMonth.equals(currentYearMonth);
     }
 
+
+
+
+        // Function to get the current date and time as a formatted string
+        public static String getCurrentDateTimeAsString()
+        {
+            // Get the current date and time
+            LocalDateTime now = LocalDateTime.now();
+            // Format the current date and time as a string
+            return DATE_TIME_FORMATTER.format(now);
+        }
 }

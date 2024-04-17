@@ -1,25 +1,29 @@
 package com.example.swttesting;
 
 public class Orders {
-    private String orderID;
+    private static int instanceCounter = 0;
+
+    private int orderID;
     private String orderDate;
     private String orderStatus;
     private double orderTotal;
     private ShoppingCart shoppingCart;
 
-    public Orders(String orderID, String orderDate, String orderStatus, double orderTotal, ShoppingCart shoppingCart) {
-        this.orderID = orderID;
+
+    public Orders(String orderDate, String orderStatus, double orderTotal, ShoppingCart shoppingCart) {
+        this.orderID = instanceCounter++;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.orderTotal = orderTotal;
         this.shoppingCart = shoppingCart;
+
     }
 
-    public String getOrderID() {
+    public int getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(String orderID) {
+    public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
