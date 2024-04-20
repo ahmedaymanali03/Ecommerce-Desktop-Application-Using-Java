@@ -1,9 +1,6 @@
 package com.example.swttesting;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,65 +8,66 @@ class ProductTest {
 
     private Product product;
 
-    /**
-     * Set up the Product object before each test
-     */
     @BeforeEach
     void setUp() {
-
-        product = new Product("Laptop", 1000.99, 10);
+        product = new Product("Test Product", 10.0, 5);
     }
 
-    /**
-     * Tear down the Product object after each test
-     */
     @AfterEach
     void tearDown() {
-
         product = null;
     }
 
-    /**
-     * Test the getName method of the Product class
-     */
-    @Test
-    @Order(1)
-    void getNameTest() {
+    @Nested
+    class ConstructorTests {
 
-        assertEquals("Laptop", product.getName());
+        @Test
+        void testConstructor_ValidInput() {
+            assertEquals("Test Product", product.getName(), "Name should be set correctly");
+            assertEquals(10.0, product.getPrice(), "Price should be set correctly");
+            assertEquals(5, product.getQuantity(), "Quantity should be set correctly");
+        }
     }
 
-    /**
-     * Test the getPrice method of the Product class
-     */
-    @Test
-    @Order(2)
-    void getPriceTest() {
+    @Nested
+    class GetterTests {
 
-        assertEquals(1000.99, product.getPrice());
+        @Test
+        void testGetName() {
+            assertEquals("Test Product", product.getName(), "Name should be retrieved correctly");
+        }
+
+        @Test
+        void testGetPrice() {
+            assertEquals(10.0, product.getPrice(), "Price should be retrieved correctly");
+        }
+
+        @Test
+        void testGetQuantity() {
+            assertEquals(5, product.getQuantity(), "Quantity should be retrieved correctly");
+        }
     }
 
-    /**
-     * Test the getQuantity method of the Product class
-     */
-    @Test
-    @Order(3)
-    void getQuantityTest() {
-    }
+    @Nested
+    class SetQuantityTests {
 
-    /**
-     * Test the setQuantity method of the Product class
-     */
-    @Test
-    @Order(4)
-    void setQuantityTest() {
-        product.setQuantity(20);
-        // Check if the quantity is set to 20
-        assertEquals(20, product.getQuantity());
-        // Check if we can make quantity negative
-        product.setQuantity(-10);
-        // Check if the quantity remains 20
-        assertEquals(0, product.getQuantity());
+        @Test
+        void testSetQuantity_PositiveQuantity() {
+            product.setQuantity(10);
+            assertEquals(10, product.getQuantity(), "Quantity should be updated correctly");
+        }
 
+        @Test
+        void testSetQuantity_ZeroQuantity() {
+            product.setQuantity(0);
+            assertEquals(0, product.getQuantity(), "Quantity should be updated correctly");
+        }
+
+        @Test
+        void testSetQuantity_NegativeQuantity() {
+            IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> product.setQuantity(-1));
+            assertEquals("Quantity cannot be negative", exception.getMessage(), "Exception message should be correct");
+            assertEquals(5, product.getQuantity(), "Quantity should remain unchanged");
+        }
     }
 }
