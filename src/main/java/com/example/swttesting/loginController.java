@@ -1,5 +1,6 @@
 package com.example.swttesting;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -41,14 +42,23 @@ public class loginController {
             stage.setScene(scene);
             stage.show();
             System.out.println("i am here");
+        } else {
+            alert();
         }
     }
-
     @FXML
     private boolean handleLogin() throws IOException {
         String Email = usernameField.getText();
         String Password = passwordField.getText();
 
         return Ecommerce.checkuser(Email, Password);
+    }
+
+    public void alert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(null);
+        alert.setContentText("Wrong input : please check the entered data");
+        alert.showAndWait();
     }
 }

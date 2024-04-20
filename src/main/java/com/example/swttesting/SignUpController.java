@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -32,6 +33,7 @@ public class SignUpController
         registered = Ecommerce.registerUser(usernameField.getText(), emailField.getText(), passwordField.getText());
         if (!registered)
         {
+            alert();
             return;
         }
         Parent root = FXMLLoader.load(getClass().getResource("productCatalogue.fxml"));
@@ -51,5 +53,11 @@ public class SignUpController
         stage.show();
     }
 
-
+    public void alert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(null);
+        alert.setContentText("Wrong input : please check the entered data");
+        alert.showAndWait();
+    }
 }
