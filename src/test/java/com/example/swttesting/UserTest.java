@@ -2,7 +2,6 @@ package com.example.swttesting;
 
 import org.junit.jupiter.api.*;
 
-import static com.example.swttesting.orderController.getCurrentDateTimeAsString;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
@@ -67,12 +66,12 @@ class UserTest {
         @Test
         @DisplayName("Add order")
         void testAddOrder() {
-            Orders order = new Orders(getCurrentDateTimeAsString(), "confirmed", 1012.54, user.getShoppingCart());
+            Orders order = new Orders(Orders.getCurrentDateTimeAsString(), "confirmed", 1012.54, user.getShoppingCart());
             user.addOrder(order);
             assertEquals(1, user.getOrders().size(), "Order should be added to the list");
             assertEquals(order, user.getOrders().get(0), "Added order should be same as the one added");
 
-            Orders order2 = new Orders(getCurrentDateTimeAsString(), "confirmed", 1012.54, user.getShoppingCart());
+            Orders order2 = new Orders(Orders.getCurrentDateTimeAsString(), "confirmed", 1012.54, user.getShoppingCart());
             user.addOrder(order2);
             assertEquals(2, user.getOrders().size(), "Another order should be added to the list");
             assertEquals(order2, user.getOrders().get(1), "Added order should be same as the one added");
