@@ -12,6 +12,10 @@ import javafx.stage.Stage;
 import java.time.YearMonth;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.event.EventHandler;
+
 
 import java.io.IOException;
 
@@ -82,31 +86,37 @@ public class orderController {
     public boolean verifyCard() {
         if (!isLong(cardNo.getText()) || cardNo.getText().length() != 16) {
             System.out.println(1);
+            alert();
             return false;
 
         }
         if (!cardNo.getText().startsWith("1234")) {
             System.out.println(2);
+            alert();
             return false;
         }
 
         if(!isInteger(cvv.getText()) || cvv.getText().length() != 3){
             System.out.println(3);
+            alert();
             return false;
         }
         if(!isInteger(month.getText())){
             System.out.println(4);
+            alert();
             return false;
         }
 
         if (!isInteger(year.getText()))
         {
             System.out.println(5);
+            alert();
             return false;
         }
 
         if(isBeforeOrEqualCurrentYearAndMonth(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()))){
             System.out.println(6);
+            alert();
             return false;
         }
         System.out.println(7);
@@ -139,7 +149,13 @@ public class orderController {
     }
 
 
-
+public void alert(){
+    Alert alert = new Alert(AlertType.ERROR);
+    alert.setTitle("ERROR");
+    alert.setHeaderText(null);
+    alert.setContentText("Wrong input : please check the entered data");
+    alert.showAndWait();
+}
 
         // Function to get the current date and time as a formatted string
         public static String getCurrentDateTimeAsString()
@@ -149,4 +165,5 @@ public class orderController {
             // Format the current date and time as a string
             return DATE_TIME_FORMATTER.format(now);
         }
+
 }
