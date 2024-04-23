@@ -45,7 +45,7 @@ public class productCatalogueController {
 
         listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println("Selected Item: " + newValue);
-            cartCounter++;
+            cartCounter= Ecommerce.currentUser.getShoppingCart().getNoOfProducts();
             cartButton.setText(cartCounter + " items in cart");
             Ecommerce.currentUser.getShoppingCart().addProduct(products.get(listView.getSelectionModel().getSelectedIndex()), 1);
             //products.get(listView.getSelectionModel().getSelectedIndex()).setQuantity(products.get(listView.getSelectionModel().getSelectedIndex()).getQuantity() - 1);
