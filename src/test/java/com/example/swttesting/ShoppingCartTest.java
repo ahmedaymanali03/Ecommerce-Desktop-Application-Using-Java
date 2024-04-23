@@ -3,11 +3,14 @@ package com.example.swttesting;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class ShoppingCartTest {
 
     private ShoppingCart cart;
     private Product product1;
     private Product product2;
+
+
 
     @BeforeEach
     void setUp() {
