@@ -64,10 +64,6 @@ public class ShoppingCart {
         return new ArrayList<Product>(products.keySet());
     }
 
-    public int getQuantity(Product product) {
-        return products.get(product);
-    }
-
     public void clear() {
         products.clear();
     }
@@ -80,29 +76,10 @@ public class ShoppingCart {
         return products.containsKey(product);
     }
 
+
     public boolean containsProduct(Product product, int quantity) {
         return products.containsKey(product) && products.get(product) == quantity;
     }
-
-    public int getCartSize() {
-        return products.size();
-    }
-
-
-    public void checkout() {
-        for (Product product : products.keySet()) {
-            product.setQuantity(product.getQuantity() - products.get(product));
-        }
-        products.clear();
-    }
-
-    public void cancel() {
-        for (Product product : products.keySet()) {
-            product.setQuantity(product.getQuantity() + products.get(product));
-        }
-        products.clear();
-    }
-
 //function that gets no of products in the shopping cart
     public int getNoOfProducts(){
         int noOfProducts = 0;

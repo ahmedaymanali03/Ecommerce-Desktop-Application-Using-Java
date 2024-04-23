@@ -1,5 +1,9 @@
 package com.example.swttesting;
 
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+
 public class Orders {
     private static int instanceCounter = 0;
 
@@ -8,6 +12,8 @@ public class Orders {
     private String orderStatus;
     private double orderTotal;
     private ShoppingCart shoppingCart;
+
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 
     public Orders(String orderDate, String orderStatus, double orderTotal, ShoppingCart shoppingCart) {
@@ -57,5 +63,77 @@ public class Orders {
 
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    public static boolean verifyCard(String cardNo, String cvv, String month, String year)
+    {
+        if (!isLong(cardNo) || cardNo.length() != 16) {
+            System.out.println(1);
+            return false;
+
+        }
+        if (!cardNo.startsWith("1234")) {
+            System.out.println(2);
+            return false;
+        }
+
+        if(!isInteger(cvv) || cvv.length() != 3){
+            System.out.println(3);
+            return false;
+        }
+        if(!isInteger(month)){
+            System.out.println(4);
+            return false;
+        }
+
+        if (!isInteger(year))
+        {
+            System.out.println(5);
+            return false;
+        }
+
+        if(isBeforeOrEqualCurrentYearAndMonth(Integer.parseInt(year), Integer.parseInt(month))){
+            System.out.println(6);
+            return false;
+        }
+        System.out.println(7);
+        return true;
+    }
+
+    public static boolean isLong(String input) {
+        try {
+            Long.parseLong(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean isInteger(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean isBeforeOrEqualCurrentYearAndMonth(int givenYear, int givenMonth) {
+        YearMonth currentYearMonth = YearMonth.now();
+        YearMonth givenYearMonth = YearMonth.of(givenYear, givenMonth);
+
+        return givenYearMonth.isBefore(currentYearMonth) || givenYearMonth.equals(currentYearMonth);
+    }
+
+
+
+
+    // Function to get the current date and time as a formatted string
+    public static String getCurrentDateTimeAsString()
+    {
+        // Get the current date and time
+        LocalDateTime now = LocalDateTime.now();
+        // Format the current date and time as a string
+        return DATE_TIME_FORMATTER.format(now);
     }
 }
