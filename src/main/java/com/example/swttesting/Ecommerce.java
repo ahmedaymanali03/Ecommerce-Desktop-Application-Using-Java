@@ -84,4 +84,8 @@ public class Ecommerce {
         return false;
     }
 
+    public static void logout(){
+        currentUser = null;
+    }
+
 }

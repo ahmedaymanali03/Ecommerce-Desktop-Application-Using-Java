@@ -79,7 +79,7 @@ public class productCatalogueController {
     public void logOut(ActionEvent event) throws IOException {
         System.out.println("Logging out");
         Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
-        Ecommerce.currentUser = null;
+        Ecommerce.logout();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
