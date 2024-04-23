@@ -77,6 +77,9 @@ public class ShoppingCart {
     }
 
 
+    public boolean containsProduct(Product product, int quantity) {
+        return products.containsKey(product) && products.get(product) == quantity;
+    }
 //function that gets no of products in the shopping cart
     public int getNoOfProducts(){
         int noOfProducts = 0;
