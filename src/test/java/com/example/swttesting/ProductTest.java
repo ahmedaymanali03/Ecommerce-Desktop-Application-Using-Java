@@ -9,6 +9,8 @@ class ProductTest {
 
     private Product product;
 
+
+
     @BeforeEach
     void setUp() {
         product = new Product("Test Product", 10.0, 5);
