@@ -85,4 +85,12 @@ public class productCatalogueController {
         stage.setScene(scene);
         stage.show();
     }
+    public void switchToPastOrders(ActionEvent event) throws IOException {
+        System.out.println("Switching to past orders");
+        Parent root = FXMLLoader.load(getClass().getResource("pastOrders.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
