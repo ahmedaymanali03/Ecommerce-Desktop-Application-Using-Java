@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
@@ -71,11 +72,18 @@ public class shoppingCartController {
     }
 
     public void checkout(ActionEvent event) throws IOException {
+        if (Ecommerce.currentUser.getShoppingCart().getNoOfProducts() != 0) {
+
+
         Parent root = FXMLLoader.load(getClass().getResource("order.fxml"));
         Scene scene = new Scene(root);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+        }
+        else {
+            alert();
+        }
     }
 
     public void returnToCatalogue(ActionEvent event) throws IOException {
@@ -84,5 +92,12 @@ public class shoppingCartController {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+    }
+    public void alert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(null);
+        alert.setContentText("Cart is empty!");
+        alert.showAndWait();
     }
 }
