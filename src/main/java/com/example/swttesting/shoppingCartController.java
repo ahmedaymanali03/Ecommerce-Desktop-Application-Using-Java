@@ -39,11 +39,6 @@ public class shoppingCartController {
     private Parent root;
 
 
-
-
-
-
-
     public void initialize() {
         int cartCounter = Ecommerce.currentUser.getShoppingCart().getNoOfProducts();
 
