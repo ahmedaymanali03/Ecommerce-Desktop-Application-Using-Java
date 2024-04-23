@@ -24,6 +24,13 @@ public class Orders {
         this.shoppingCart = shoppingCart;
 
     }
+    public Orders(String orderDate, String orderStatus, double orderTotal, ShoppingCart shoppingCart, int orderID) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.orderTotal = orderTotal;
+        this.shoppingCart = shoppingCart;
+    }
 
     public int getOrderID() {
         return orderID;
