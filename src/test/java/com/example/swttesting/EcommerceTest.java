@@ -7,7 +7,7 @@ class EcommerceTest {
 
     @BeforeEach
     void setUp() {
-        // Reset the state before each test
+        // Set up the state before each test
         Ecommerce.users.clear();
         Ecommerce.products.clear();
         Ecommerce.currentUser = null;
@@ -51,5 +51,31 @@ class EcommerceTest {
 
 
     }
+    @Nested
+    class LoginandLogoutTests {
+        @Test
+        void testCheckUser_ValidCredentials() {
+            Ecommerce.registerUser("Ahmed Ali", "ahmed.ali@email.com", "securePass123");
+            Ecommerce.logout();
+            Ecommerce.checkuser("ahmed.ali@email.com", "securePass123");
+            assertTrue(Ecommerce.currentUser.getName().equals("Ahmed Ali"), "User should be authenticated with correct credentials");
+         }
+        @Test
+        void testCheckUser_InvalidCredentials() {
+            Ecommerce.registerUser("Ahmed Ali", "ahmed.ali@emai.com", "securePass123");
+            Ecommerce.logout();
+            Ecommerce.checkuser("ahmed", "password");
+            assertNull(Ecommerce.currentUser, "User should not be authenticated with incorrect credentials");
+        }
+        @Test
+        void testLogout() {
+            Ecommerce.registerUser("Ahmed Ali", "ahmed.ali@emai.com", "securePass123");
+            Ecommerce.logout();
+            assertNull(Ecommerce.currentUser, "User should be logged out");
+
+    }
+
+    }
+
 
 }

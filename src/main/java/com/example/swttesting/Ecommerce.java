@@ -6,7 +6,7 @@ public class Ecommerce {
     public static ArrayList<User> users = new ArrayList<User>();
     public static ArrayList<Product> products = new ArrayList<Product>();
 
-    public static User currentUser;
+    public static User currentUser ;
 
     public static boolean registerUser(String name, String email, String password) {
         if (isUserExist(email)) {
@@ -74,8 +74,9 @@ public class Ecommerce {
     public static boolean checkuser(String email,String password){
         for (int i = 0; i< users.size(); i++){
             if (users.get(i).getEmail().equals(email) && users.get(i).getPassword().equals(password)) {
-                //System.out.println("The user was found");
+                System.out.println("The user was found");
                 currentUser = users.get(i);
+                System.out.println("The current user is " + currentUser.getName());
                 return true;
             }
         }

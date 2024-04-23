@@ -6,9 +6,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(240,205,100,0.42);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swttesting.productCatalogueController">
    <children>
-      <ListView fx:id="listView"  prefWidth="600.0" style="-fx-background-color: rgba(240,205,100,0.42);" />
-      <Button fx:id="cartButton"  mnemonicParsing="false" onAction="#switchToCart" prefHeight="26.0" prefWidth="110.0" />
-      <Button layoutX="482.0"  mnemonicParsing="false" onAction="#switchToPastOrders" text="Pervious Orders" />
-      <Button fx:id="logOutButton"  mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+      <ListView fx:id="listView" layoutY="50.0" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: rgba(240,205,100,0.42);" />
+      <Button fx:id="cartButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToCart" prefHeight="26.0" prefWidth="110.0" />
+      <Button layoutX="482.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToPastOrders" text="Pervious Orders" />
+      <Button fx:id="logOutButton" layoutX="270.0" layoutY="14.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
    </children>
 </AnchorPane>
