@@ -43,6 +43,13 @@ class EcommerceTest {
         }
 
         @Test
+        void testAddProduct_DuplicateName() {
+            Ecommerce.addProduct("New Product", 100.0, 5);
+            Ecommerce.addProduct("New Product", 100.0, 5);
+            assertEquals(1, Ecommerce.products.size(), "Product list should contain one product");
+        }
+
+        @Test
         void testCheckUser_ValidCredentials() {
             Ecommerce.registerUser("John Doe", "john.doe@email.com", "password123");
             assertTrue(Ecommerce.checkuser("john.doe@email.com", "password123"), "User should be authenticated with correct credentials");

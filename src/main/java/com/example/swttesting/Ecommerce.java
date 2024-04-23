@@ -33,6 +33,12 @@ public class Ecommerce {
     }
 
     public static void addProduct(String name, double price, int quantity) {
+        for(int i = 0; i < products.size(); i++){
+            if(products.get(i).getName().equals(name)){
+                System.out.println("The product already exists");
+                return;
+            }
+        }
         products.add(new Product(name, price, quantity));
     }
 
