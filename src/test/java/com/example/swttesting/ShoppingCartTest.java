@@ -117,5 +117,37 @@ class ShoppingCartTest {
             assertTrue(cart.isEmpty(), "Products list should be empty");
         }
     }
+    @Nested
+    class ContainsProductTests {
 
+        @Test
+        void testContainsProduct() {
+            cart.addProduct(product1, 2);
+            assertTrue(cart.containsProduct(product1), "Product should be in cart");
+        }
+
+        @Test
+        void testContainsProductWithQuantity() {
+            cart.addProduct(product1, 2);
+            assertTrue(cart.containsProduct(product1, 2), "Product with specified quantity should be in cart");
+        }
+
+        @Test
+        void testContainsProductWithWrongQuantity() {
+            cart.addProduct(product1, 2);
+            assertFalse(cart.containsProduct(product1, 3), "Product with wrong quantity should not be in cart");
+        }
+
+        @Test
+        void testContainsProductWithMissingProduct() {
+            assertFalse(cart.containsProduct(product2), "Product not added should not be in cart");
+        }
+
+        @Test
+        void testContainsProductWithMissingProductAndQuantity() {
+            assertFalse(cart.containsProduct(product2, 1), "Product not added should not be in cart");
+        }
+    }
 }
+
+
