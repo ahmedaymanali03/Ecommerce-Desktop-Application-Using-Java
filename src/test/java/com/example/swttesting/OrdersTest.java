@@ -160,9 +160,39 @@ class OrdersTest {
         }
 
         @Test
-        @DisplayName("Test Verify Card with Invalid Card")
-        void testVerifyCard_InvalidCard() {
-            assertFalse(Orders.verifyCard("1234567890123456", "123", "04", "2023"), "Invalid card should fail verification");
+        @DisplayName("Test Verify Card with Invalid Card - Invalid Card Number Length")
+        void testVerifyCard_InvalidCardNumberLength() {
+            assertFalse(Orders.verifyCard("123456789012345", "123", "08", "2024"), "Card number length should be 16");
+        }
+
+        @Test
+        @DisplayName("Test Verify Card with Invalid Card - Card Number Not Starting with '1234'")
+        void testVerifyCard_CardNumberNotStartingWith1234() {
+            assertFalse(Orders.verifyCard("9876543210123456", "123", "08", "2024"), "Card number should start with '1234'");
+        }
+
+        @Test
+        @DisplayName("Test Verify Card with Invalid Card - Invalid CVV Length")
+        void testVerifyCard_InvalidCVVLength() {
+            assertFalse(Orders.verifyCard("1234567890123456", "1234", "08", "2024"), "CVV length should be 3");
+        }
+
+        @Test
+        @DisplayName("Test Verify Card with Invalid Card - Non-Numeric Month")
+        void testVerifyCard_NonNumericMonth() {
+            assertFalse(Orders.verifyCard("1234567890123456", "123", "August", "2024"), "Month should be an integer");
+        }
+
+        @Test
+        @DisplayName("Test Verify Card with Invalid Card - Non-Numeric Year")
+        void testVerifyCard_NonNumericYear() {
+            assertFalse(Orders.verifyCard("1234567890123456", "123", "08", "TwentyTwentyFour"), "Year should be an integer");
+        }
+
+        @Test
+        @DisplayName("Test Verify Card with Invalid Card - Expired Card")
+        void testVerifyCard_ExpiredCard() {
+            assertFalse(Orders.verifyCard("1234567890123456", "123", "04", "2023"), "Year and month should not be before or equal to current year and month");
         }
     }
 
